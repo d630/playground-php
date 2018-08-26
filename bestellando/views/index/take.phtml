@@ -1,0 +1,40 @@
+<?php
+$tables = $this->tables;
+$dishes = $this->dishes;
+$error_msg = $this->error_msg;
+?>
+
+<form action=<?= $_SERVER['PHP_SELF'] ?> method="POST">
+    <?php foreach($error_msg as $e): ?>
+        <div><?= htmlspecialchars($e) ?></div>
+    <?php endforeach ?>
+
+    <h2>Select Table</h2>
+    <select name="table" autofocus>
+        <option value="" selected disabled hidden>Choose here</option>
+        <?php foreach($tables as $k => $v): ?>
+            <option value=<?= htmlspecialchars($k) ?>><?= htmlspecialchars($v) ?></option>
+        <?php endforeach ?>
+    </select>
+
+    <h2>Select Dishes</h2>
+    <table id="t1_take_order">
+        <tr>
+            <th>Total</th>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        <?php foreach($dishes as $k => $v): ?>
+            <tr>
+                <td><input type="number" min="0" name="count[<?= htmlspecialchars($k) ?>]" value ="0"/></td>
+                <td><?= htmlspecialchars($k) ?></td>
+                <td><?= htmlspecialchars($v) ?></td>
+            </tr>
+        <?php endforeach ?>
+        <tr>
+            <td><button type="submit" name="action" value="cancel">cancel</button></td>
+            <td><button type="reset">reset</button></td>
+            <td><button type="submit" name="action" value="ok">submit</button></td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,27 @@
+<?php
+$menu = $this->menu;
+?>
+
+<form action=<?= $_SERVER['PHP_SELF'] ?> method="POST">
+    <h2>Menu</h2>
+    <table id='t1_print_menu'>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Note</th>
+        </tr>
+        <?php foreach($menu as $m): ?>
+            <tr>
+                <td><?= htmlspecialchars($m['id']) ?></td>
+                <td><?= htmlspecialchars($m['name']) ?></td>
+                <td><?= htmlspecialchars($m['price']) ?></td>
+                <td><?= htmlspecialchars($m['note']) ?></td>
+            </tr>
+        <?php endforeach ?>
+        <tr>
+            <td><button type="submit" name="action" value="ok">ok</button></td>
+        </tr>
+    </table>
+</form>
+

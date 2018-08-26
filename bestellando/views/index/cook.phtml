@@ -1,0 +1,54 @@
+<?php
+$tables = $this->tables;
+$orders = $this->orders;
+$selected_table = $this->selected_table;
+$all_checked = $this->all_checked;
+$error_msg = $this->error_msg;
+?>
+
+<form action=<?= $_SERVER['PHP_SELF'] ?> method="POST">
+    <?php foreach($error_msg as $e): ?>
+        <div><?= htmlspecialchars($e) ?></div>
+    <?php endforeach ?>
+
+    <h2>Filter Table</h2>
+    <select name="table" autofocus>
+        <option value="-1">all</option>
+        <?php foreach($tables as $k => $v): ?>
+            <?php if ($selected_table == $k): ?>
+                <option selected value=<?= htmlspecialchars($k) ?>><?= htmlspecialchars($v) ?></option>
+            <?php else: ?>
+                <option value=<?= htmlspecialchars($k) ?>><?= htmlspecialchars($v) ?></option>
+            <?php endif ?>
+        <?php endforeach ?>
+    </select>
+    <button type="submit" name="action" value="filter_ok">filter</button>
+
+    <h2>Mark as servable</h2>
+    <table id="t1_mark_as_servable">
+        <tr>
+            <th>Servable</th>
+            <th>ID</th>
+            <th>Table</th>
+            <th>Name</th>
+        </tr>
+        <?php foreach($orders as $o): ?>
+            <?php if ($selected_table == -1 || $selected_table == $o['ttable_id']): ?>
+                <tr>
+                    <td><input type="checkbox" name="checked[]" value="<?= htmlspecialchars($o['id']) ?>" <?= $all_checked ?> ></td>
+                    <td><?= htmlspecialchars($o['id']) ?></td>
+                    <td><?= htmlspecialchars($o['ttable_num']) ?></td>
+                    <td><?= htmlspecialchars($o['name']) ?></td>
+                </tr>
+            <?php endif ?>
+        <?php endforeach ?>
+        <tr>
+            <td><button type="submit" name="action">cancel</button></td>
+            <td><button type="submit" name="action" value="set_all_unchecked">unmark all</button></td>
+            <td><button type="submit" name="action" value="set_all_checked">mark all</button></td>
+            <td><button type="submit" name="action" value="mark_ok">submit</button></td>
+        </tr>
+        <input type="hidden" name="selected_table" value="<?= $selected_table ?>">
+    </table>
+</form>
+

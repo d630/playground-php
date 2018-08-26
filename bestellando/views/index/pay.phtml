@@ -1,0 +1,102 @@
+<?php
+$tables = $this->tables;
+$orders = $this->orders;
+$all_checked = $this->all_checked;
+$all_checked2 = $this->all_checked2;
+$error_msg = $this->error_msg;
+?>
+
+<form id=1 action=<?= $_SERVER['PHP_SELF'] ?> method="POST">
+    <?php foreach($error_msg as $e): ?>
+        <div><?= htmlspecialchars($e) ?></div>
+    <?php endforeach ?>
+
+    <h2>Filter Table</h2>
+    <select name="table" autofocus>
+        <option value="-1">all</option>
+        <?php foreach($tables as $k => $v): ?>
+            <?php if ($_SESSION['selected_table'] == $k): ?>
+                <option selected value=<?= htmlspecialchars($k) ?>><?= htmlspecialchars($v) ?></option>
+            <?php else: ?>
+                <option value=<?= htmlspecialchars($k) ?>><?= htmlspecialchars($v) ?></option>
+            <?php endif ?>
+        <?php endforeach ?>
+    </select>
+    <button type="submit" name="action" value="filter_ok">filter</button>
+
+    <h2>Mark as paid</h2>
+    <table id="t1_mark_as_paid">
+        <tr>
+            <th>Paid</th>
+            <th>ID</th>
+            <th>Table</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        <?php foreach($orders as $k => $v): ?>
+            <?php if ($_SESSION['selected_table'] == -1 || $_SESSION['selected_table'] == $v['ttable_id']): ?>
+                <tr>
+                    <td><input type="checkbox" name="checked[]" value="<?= htmlspecialchars($k) ?>" <?= $all_checked ?> ></td>
+                    <td><?= htmlspecialchars($k) ?></td>
+                    <td><?= htmlspecialchars($v['ttable_num']) ?></td>
+                    <td><?= htmlspecialchars($v['name']) ?></td>
+                    <td><?= htmlspecialchars($v['price']) ?></td>
+                </tr>
+            <?php endif ?>
+        <?php endforeach ?>
+        <tr>
+            <td><button type="submit" name="action">cancel</button></td>
+            <td><button type="submit" name="action" value="set_all_unchecked">unmark all</button></td>
+            <td><button type="submit" name="action" value="set_all_checked">mark all</button></td>
+            <td><button type="submit" name="action" value="add">add</button></td>
+        </tr>
+    </table>
+</form>
+
+<form id=2 action=<?= $_SERVER['PHP_SELF'] ?> method="POST">
+    <h2>Filter Table</h2>
+    <select name="table2" autofocus>
+        <option value="-1">all</option>
+        <?php foreach($tables as $k => $v): ?>
+            <?php if ($_SESSION['selected_table2'] == $k): ?>
+                <option selected value=<?= htmlspecialchars($k) ?>><?= htmlspecialchars($v) ?></option>
+            <?php else: ?>
+                <option value=<?= htmlspecialchars($k) ?>><?= htmlspecialchars($v) ?></option>
+            <?php endif ?>
+        <?php endforeach ?>
+    </select>
+    <button type="submit" name="action" value="filter_ok2">filter</button>
+
+    <h2>Marked Orders</h2>
+    <table id="t2_mark_as_paid">
+        <tr>
+            <th>ID</th>
+            <th>Table</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        <?php foreach($_SESSION['pay'] as $k => $v): ?>
+            <?php if ($_SESSION['selected_table2'] == -1 || $_SESSION['selected_table2'] == $v['ttable_id']): ?>
+            <tr>
+                <td><input type="checkbox" name="added[]" value="<?= htmlspecialchars($k) ?>" <?= $all_checked2 ?> ></td>
+                <td><?= htmlspecialchars($k) ?></td>
+                <td><?= htmlspecialchars($v['ttable_num']) ?></td>
+                <td><?= htmlspecialchars($v['name']) ?></td>
+                <td><?= htmlspecialchars($v['price']) ?></td>
+            </tr>
+            <?php endif ?>
+        <?php endforeach ?>
+        <tr>
+            <td colspan=5><?= $_SESSION['sum'] ?> </td>
+        </tr>
+        <tr>
+            <td><button type="submit" name="action">cancel</button></td>
+            <td><button type="submit" name="action" value="set_all_unchecked2">unmark all</button></td>
+            <td><button type="submit" name="action" value="set_all_checked2">mark all</button></td>
+            <td><button type="submit" name="action" value="remove">remove</button></td>
+            <td><button type="submit" name="action" value="receipt">receipt</button></td>
+            <td><button type="submit" name="action" value="mark_ok">submit</button></td>
+        </tr>
+    </table>
+</form>
+

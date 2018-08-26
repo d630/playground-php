@@ -1,0 +1,31 @@
+<?php
+session_name('mark-as-paid');
+session_start();
+
+if (empty($_SESSION) || empty($_SESSION['pay']) || empty($_SESSION['sum'])) {
+    header('Location: /index.php');
+    exit;
+}
+?>
+
+<form action="/pay">
+    <h2>Your Receipt</h2>
+    <table id="t1_receipt">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        <?php foreach($_SESSION['pay'] as $k => $v): ?>
+            <tr>
+                <td><?= htmlspecialchars($v['name']) ?></td>
+                <td><?= htmlspecialchars($v['price']) ?></td>
+            </tr>
+        <?php endforeach ?>
+        <tr>
+            <td colspan=2><?= $_SESSION['sum'] ?></td>
+        </tr>
+        <tr>
+            <td><button type="submit">ok</button></td>
+        </tr>
+    </table>
+</form>
