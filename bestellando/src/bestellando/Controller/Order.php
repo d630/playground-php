@@ -106,7 +106,7 @@ class Order
             $orders = array_diff_key($orders, $_SESSION['pay']);
         }
 
-        if (empty($_SESSION['pay'])) {
+        if (empty($_SESSION['sum'])) {
             $_SESSION['sum'] = sprintf('%.2f', 0);
         }
 
