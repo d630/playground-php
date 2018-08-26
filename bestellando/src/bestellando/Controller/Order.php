@@ -157,7 +157,6 @@ class Order
                 break;
             case 'receipt':
                 header('Location: /receipt');
-                exit;
                 break;
             case 'mark_ok':
                 if (empty($_SESSION['pay'])) {

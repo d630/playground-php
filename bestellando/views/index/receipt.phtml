@@ -3,7 +3,7 @@ session_name('mark-as-paid');
 session_start();
 
 if (empty($_SESSION) || empty($_SESSION['pay']) || empty($_SESSION['sum'])) {
-    header('Location: /index.php');
+    header('Location: /pay');
     exit;
 }
 ?>
