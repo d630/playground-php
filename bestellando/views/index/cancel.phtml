@@ -6,49 +6,67 @@ $all_checked = $this->all_checked;
 $error_msg = $this->error_msg;
 ?>
 
+<?php foreach($error_msg as $e): ?>
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <?= htmlspecialchars($e) ?>
+    </div>
+<?php endforeach ?>
+
 <form action=<?= $_SERVER['PHP_SELF'] ?> method="POST">
-    <?php foreach($error_msg as $e): ?>
-        <div><?= htmlspecialchars($e) ?></div>
-    <?php endforeach ?>
+    <input type="hidden" name="selected_table" value="<?= $selected_table ?>">
 
-    <h2>Filter Table</h2>
-    <select name="table" autofocus>
-        <option value="-1">all</option>
-        <?php foreach($tables as $k => $v): ?>
-            <?php if ($selected_table == $k): ?>
-                <option selected value=<?= htmlspecialchars($k) ?>><?= htmlspecialchars($v) ?></option>
-            <?php else: ?>
-                <option value=<?= htmlspecialchars($k) ?>><?= htmlspecialchars($v) ?></option>
-            <?php endif ?>
-        <?php endforeach ?>
-    </select>
-    <button type="submit" name="action" value="filter_ok">filter</button>
+    <div class="form-group">
+        <h3>Filter Table</h3>
+        <select class="form-control" name="table" autofocus>
+            <option value="-1">all</option>
+            <?php foreach($tables as $k => $v): ?>
+                <?php if ($selected_table == $k): ?>
+                    <option selected value=<?= htmlspecialchars($k) ?>><?= htmlspecialchars($v) ?></option>
+                <?php else: ?>
+                    <option value=<?= htmlspecialchars($k) ?>><?= htmlspecialchars($v) ?></option>
+                <?php endif ?>
+            <?php endforeach ?>
+        </select>
+    </div>
 
-    <h2>Mark as cancelled</h2>
-    <table id="t1_mark_as_cancelled">
-        <tr>
-            <th>Cancel</th>
-            <th>ID</th>
-            <th>Table</th>
-            <th>Name</th>
-        </tr>
-        <?php foreach($orders as $o): ?>
-            <?php if ($selected_table == -1 || $selected_table == $o['ttable_id']): ?>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block btn-md" name="action" value="filter_ok">filter</button>
+    </div>
+
+    <div class="form-group">
+        <h3>Mark as cancelled</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
                 <tr>
-                    <td><input type="checkbox" name="checked[]" value="<?= htmlspecialchars($o['id']) ?>" <?= $all_checked ?> ></td>
-                    <td><?= htmlspecialchars($o['id']) ?></td>
-                    <td><?= htmlspecialchars($o['ttable_num']) ?></td>
-                    <td><?= htmlspecialchars($o['name']) ?></td>
+                    <th>Cancel</th>
+                    <th>ID</th>
+                    <th>Table</th>
+                    <th>Name</th>
                 </tr>
-            <?php endif ?>
-        <?php endforeach ?>
-        <tr>
-            <td><button type="submit" name="action">cancel</button></td>
-            <td><button type="submit" name="action" value="set_all_unchecked">unmark all</button></td>
-            <td><button type="submit" name="action" value="set_all_checked">mark all</button></td>
-            <td><button type="submit" name="action" value="mark_ok">submit</button></td>
-        </tr>
-        <input type="hidden" name="selected_table" value="<?= $selected_table ?>">
-    </table>
+                <?php foreach($orders as $o): ?>
+                    <?php if ($selected_table == -1 || $selected_table == $o['ttable_id']): ?>
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="checked[]" value="<?= htmlspecialchars($o['id']) ?>" <?= $all_checked ?> >
+                                </div>
+                            </td>
+                            <td><?= htmlspecialchars($o['id']) ?></td>
+                            <td><?= htmlspecialchars($o['ttable_num']) ?></td>
+                            <td><?= htmlspecialchars($o['name']) ?></td>
+                        </tr>
+                    <?php endif ?>
+                <?php endforeach ?>
+            </table>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-danger btn-block btn-md" name="action">cancel</button></td>
+        <button type="submit" class="btn btn-primary btn-block btn-md" name="action" value="set_all_unchecked">unmark all</button>
+        <button type="submit" class="btn btn-primary btn-block btn-md" name="action" value="set_all_checked">mark all</button>
+        <button type="submit" class="btn btn-success btn-block btn-md" name="action" value="mark_ok">submit</button>
+    </div>
 </form>
 

@@ -4,37 +4,47 @@ $dishes = $this->dishes;
 $error_msg = $this->error_msg;
 ?>
 
+<?php foreach($error_msg as $e): ?>
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <?= htmlspecialchars($e) ?>
+    </div>
+<?php endforeach ?>
+
 <form action=<?= $_SERVER['PHP_SELF'] ?> method="POST">
-    <?php foreach($error_msg as $e): ?>
-        <div><?= htmlspecialchars($e) ?></div>
-    <?php endforeach ?>
+    <div class="form-group">
+        <h3>Select Table</h3>
+        <select class="form-control" name="table" autofocus>
+            <option value="" selected disabled hidden>Choose here</option>
+            <?php foreach($tables as $k => $v): ?>
+                <option value=<?= htmlspecialchars($k) ?>><?= htmlspecialchars($v) ?></option>
+            <?php endforeach ?>
+        </select>
+    </div>
 
-    <h2>Select Table</h2>
-    <select name="table" autofocus>
-        <option value="" selected disabled hidden>Choose here</option>
-        <?php foreach($tables as $k => $v): ?>
-            <option value=<?= htmlspecialchars($k) ?>><?= htmlspecialchars($v) ?></option>
-        <?php endforeach ?>
-    </select>
+    <div class="form-group">
+        <h3>Select Dishes</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>Total</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+                <?php foreach($dishes as $k => $v): ?>
+                    <tr>
+                        <td><input class="form-control" type="number" min="0" name="count[<?= htmlspecialchars($k) ?>]" value ="0"/></td>
+                        <td><?= htmlspecialchars($k) ?></td>
+                        <td><?= htmlspecialchars($v) ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+        </div>
+    </div>
 
-    <h2>Select Dishes</h2>
-    <table id="t1_take_order">
-        <tr>
-            <th>Total</th>
-            <th>ID</th>
-            <th>Name</th>
-        </tr>
-        <?php foreach($dishes as $k => $v): ?>
-            <tr>
-                <td><input type="number" min="0" name="count[<?= htmlspecialchars($k) ?>]" value ="0"/></td>
-                <td><?= htmlspecialchars($k) ?></td>
-                <td><?= htmlspecialchars($v) ?></td>
-            </tr>
-        <?php endforeach ?>
-        <tr>
-            <td><button type="submit" name="action" value="cancel">cancel</button></td>
-            <td><button type="reset">reset</button></td>
-            <td><button type="submit" name="action" value="ok">submit</button></td>
-        </tr>
-    </table>
+    <div class="form-group">
+        <button type="submit" class="btn btn-danger btn-block btn-md" name="action" value="cancel">cancel</button>
+        <button type="reset" class="btn btn-primary btn-block btn-md">reset</button>
+        <button type="submit" class="btn btn-success btn-block btn-md" name="action" value="ok">submit</button>
+    </div>
 </form>

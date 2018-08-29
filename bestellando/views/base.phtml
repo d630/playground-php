@@ -3,13 +3,23 @@ $config = \bestellando\Config::get('site');
 
 header('Content-Type: text/html; charset=UTF-8');
 ?><!DOCTYPE html>
-<html>
+<html lang="eng">
     <head>
-        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
         <title><?= $config['title'] ?></title>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div class='container'>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/"><?= $config['title'] ?></a>
+                </div>
+            </div>
+        </nav>
+        <div class="mt-5 container">
             <?php $this->content(); ?>
         </div>
     </body>
