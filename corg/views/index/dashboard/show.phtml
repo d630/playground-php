@@ -1,0 +1,63 @@
+<?php
+$customers = &$this->customers;
+$activities = &$this->activities;
+$files = &$this->files;
+?>
+
+<div class="row">
+    <div class="col-sm-4">
+        <h2>Customers <span class="badge badge-light"><?= count($customers) ?></span></h2>
+        <div class="table-responsive table-sm">
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>rev</th>
+                    <th>org</th>
+                </tr>
+                <?php foreach($customers as $k => $v): ?>
+                    <tr class="table-row" data-href="/customer/list/<?= htmlspecialchars($k) ?>">
+                        <td><?= htmlspecialchars($v['rev']) ?></td>
+                        <td><?= htmlspecialchars($v['org']) ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h2>Activities <span class="badge badge-light"><?= count($activities) ?></span></h2>
+        <div class="table-responsive table-sm">
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>mtime</th>
+                    <th>org</th>
+                    <th>name</th>
+                </tr>
+                <?php foreach($activities as $k => $v): ?>
+                    <tr class="table-row" data-href="/activity/list/<?= htmlspecialchars($k) ?>">
+                        <td><?= htmlspecialchars($v['mtime']) ?></td>
+                        <td><?= htmlspecialchars($v['org']) ?></td>
+                        <td><?= htmlspecialchars($v['name']) ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h2>Files <span class="badge badge-light"><?= count($files) ?></span></h2>
+        <div class="table-responsive table-sm">
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>mtime</th>
+                    <th>activity</th>
+                    <th>name</th>
+                </tr>
+                <?php foreach($files as $k => $v): ?>
+                    <tr class="table-row" data-href="/files/list/<?= htmlspecialchars($k) ?>">
+                        <td><?= htmlspecialchars($v['mtime']) ?></td>
+                        <td><?= htmlspecialchars($v['activity_name']) ?></td>
+                        <td><?= htmlspecialchars($v['name']) ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+        </div>
+    </div>
+</div>

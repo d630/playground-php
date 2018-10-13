@@ -1,0 +1,29 @@
+<?php
+$error_msg = &$this->error_msg;
+?>
+
+<?php foreach($error_msg as $e): ?>
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <?= htmlspecialchars($e) ?>
+    </div>
+<?php endforeach ?>
+
+<div class="row">
+    <form action="/auth/login" class="form-signin p-4 col-sm-3" method="POST">
+        <h3 >Login</h3>
+
+        <div class="form-group">
+            <label for="username" class="sr-only" >username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="<?=htmlspecialchars($username) ?: 'employee' ?>" autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="sr-only">password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="<?=htmlspecialchars($username) ?: 'password' ?>">
+        </div>
+
+        <button type="submit" class="btn btn-primary" name="action" value="sign-in">sign in</button>
+        <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="First register, then come back and log in" name="action" value="register">register</button>
+    </form>
+<div>

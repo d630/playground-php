@@ -1,0 +1,35 @@
+<?php
+$error_msg = &$this->error_msg;
+$employee = &$this->employee;
+$password = &$this->password;
+?>
+
+<?php foreach($error_msg as $e): ?>
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <?= htmlspecialchars($e) ?>
+    </div>
+<?php endforeach ?>
+
+<div class="row">
+    <form action="/auth/register" class="form-signin p-4 col-sm-3" method="POST">
+        <h3 >Register</h3>
+
+        <div class="form-group">
+            <label for="username" class="sr-only" >username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="username" value="<?=htmlspecialchars($employee) ?: '' ?>" required autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="sr-only">password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="password" value="<?=htmlspecialchars($password) ?: '' ?>" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password2" class="sr-only">password</label>
+            <input type="password" class="form-control" id="password2" name="password2" placeholder="retype password" value="<?=htmlspecialchars($password2) ?: '' ?>" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" name="action" value="register">submit</button>
+    </form>
+<div>

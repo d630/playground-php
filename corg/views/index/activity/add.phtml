@@ -1,0 +1,71 @@
+<?php
+$error_msg = &$this->error_msg;
+$customer_id = &$this->customer_id;
+$customers = &$this->customers;
+?>
+
+<?php foreach($error_msg as $e): ?>
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <?= htmlspecialchars($e) ?>
+    </div>
+<?php endforeach ?>
+
+<h3>Add Activity</h3>
+
+<form action="/activity/add" method="POST">
+    <input type="hidden" name="employee_id" value="<?= $_SESSION['employee_id']?>">
+
+    <?php if (empty($customer_id)): ?>
+        <div class="form-group row">
+            <label for="customer_id" class="col-sm-2 col-form-label">org</label>
+            <div class="col-sm-10">
+                <select class="form-control custom-select" id="customer_id" name="customer_id" autofocus required>
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <?php foreach($customers as $k => $v): ?>
+                        <option value=<?= htmlspecialchars($k) ?>>
+                            <?= htmlspecialchars($v) ?>
+                        </option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="form-group row">
+            <label for="customer_id" class="col-sm-2 col-form-label">org</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="customer_id" name="customer_id" readonly required>
+                    <option value=<?= htmlspecialchars($customer_id) ?>>
+                            <?= htmlspecialchars($customers[$customer_id]) ?>
+                    </option>
+                </select>
+            </div>
+        </div>
+    <?php endif ?>
+
+    <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="description" class="col-sm-2 col-form-label">description</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="description" name="description" rows="10"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-10">
+        </div>
+        <div class="btn-group btn-group-sm col-sm-2" role="group" aria-label="actions" >
+            <button type="button" class="btn btn-danger">
+                <a href="/activity/list" style="color:inherit">cancel</a>
+            </button>
+            <button type="reset" class="btn btn-primary">reset</button>
+            <button type="submit" class="btn btn-success" name="action" value="ok">ok</button>
+        </button>
+    </div>
+</form>

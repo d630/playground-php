@@ -1,0 +1,13 @@
+body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+
+.table-row{
+  cursor:pointer;
+}
+
+.custom-file-input ~ .custom-file-label::after {
+    content: "browse";
+}
+

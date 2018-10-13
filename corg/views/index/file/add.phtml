@@ -1,0 +1,147 @@
+<?php
+$error_msg = &$this->error_msg;
+$activity_id = &$this->activity_id;
+$activities = &$this->activities;
+$_file = &$this->_file;
+?>
+
+<?php foreach($error_msg as $e): ?>
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <?= htmlspecialchars($e) ?>
+    </div>
+<?php endforeach ?>
+
+<h3>Add File</h3>
+
+<form action="<?= '/files/add/' . htmlspecialchars($activity_id) ?>" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="tmp_file" value="<?= htmlspecialchars($_file['tmp_file']) ?>">
+
+    <?php if (empty($activity_id)): ?>
+        <div class="form-group row">
+            <label for="activity_id" class="col-sm-2 col-form-label">activity</label>
+            <div class="col-sm-10">
+                <select class="form-control custom-select" id="activity_id" name="activity_id" required autofocus>
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <?php foreach($activities as $k): ?>
+                        <option value=<?= htmlspecialchars($k) ?>>
+                            <?= htmlspecialchars($k) ?>
+                        </option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="form-group row">
+            <label for="activity_id" class="col-sm-2 col-form-label">activity</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="activity_id" name="activity_id" readonly required>
+                    <option value=<?= htmlspecialchars($activity_id) ?>>
+                            <?= htmlspecialchars($activity_id) ?>
+                    </option>
+                </select>
+            </div>
+        </div>
+    <?php endif ?>
+
+    <?php if (empty($_file['name'])): ?>
+        <div class="form-group row">
+            <div class="col-2">
+                file
+            </div>
+            <div class="input-group col-sm-10">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile" name="uploaded_file" aria-describedby="inputGroupFile" required autofocus>
+                    <label class="custom-file-label" for="inputGroupFile"></label>
+                </div>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary" id="inputGroupFile" name="action" value="upload">upload</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="size" class="col-sm-2 col-form-label">size</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" name="size" placeholder="<?= htmlspecialchars($_file['size']) ?>">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="mtype" class="col-sm-2 col-form-label">mtype</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" name="mtype" placeholder="<?= htmlspecialchars($_file['type']) ?>">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">name</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" name="name" placeholder="<?= htmlspecialchars($_file['name']) ?>" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="description" class="col-sm-2 col-form-label">description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" readonly name="description" rows="10" placeholder=""></textarea>
+            </div>
+        </div>
+
+    <?php else: ?>
+        <div class="form-group row">
+            <div class="col-2">
+                file
+            </div>
+            <div class="input-group col-sm-10">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile" name="uploaded_file" aria-describedby="inputGroupFile" disabled>
+                    <label class="custom-file-label" for="inputGroupFile"><?= htmlspecialchars($_file['name']) ?></label>
+                </div>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary" id="inputGroupFile" name="action" value="upload" disabled>upload</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="size" class="col-sm-2 col-form-label">size</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" name="size" value="<?= htmlspecialchars($_file['size']) ?>">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="mtype" class="col-sm-2 col-form-label">mtype</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control" name="mtype" value="<?= htmlspecialchars($_file['type']) ?>">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="name" value="<?= htmlspecialchars($_file['name']) ?>" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="description" class="col-sm-2 col-form-label">description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="description" rows="10"></textarea>
+            </div>
+        </div>
+    <?php endif ?>
+
+    <div class="form-group row">
+        <div class="col-10">
+        </div>
+        <div class="btn-group btn-group-sm col-sm-2" role="group" aria-label="actions" >
+            <button type="button" class="btn btn-danger">
+                <a href="/files/list" style="color:inherit">cancel</a>
+            </button>
+            <button type="reset" class="btn btn-primary">reset</button>
+            <button type="submit" class="btn btn-success" name="action" value="ok" <?= $_file['tmp_file'] ? '' : 'disabled' ?>>ok</button>
+        </button>
+    </div>
+</form>

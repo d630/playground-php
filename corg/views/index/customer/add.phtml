@@ -1,0 +1,144 @@
+<?php
+$error_msg = &$this->error_msg;
+$_post = &$this->_post;
+?>
+
+<?php foreach($error_msg as $e): ?>
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <?= htmlspecialchars($e) ?>
+    </div>
+<?php endforeach ?>
+
+<h3>Add Customer</h3>
+
+<form action="/customer/add" method="POST">
+    <input type="hidden" name="employee_id" value="<?= $_SESSION['employee_id']?>">
+
+    <div class="form-group row">
+        <label for="org" class="col-sm-2 col-form-label">org</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="org" name="org" value="<?= $_post['org'] ?>" placeholder="org" required autofocus>
+        </div>
+    </div>
+
+    <fieldset class="form-group">
+        <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">address</legend>
+            <div class="col-sm-10">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-form-label col-sm-2 pt-0">
+            </div>
+            <div class="col-sm-10">
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="url" class="form-control" id="url" name="url" value="<?= $_post['url'] ?>" placeholder="url">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="post_office_box" name="post_office_box" value="<?= $_post['post_office_box'] ?>" placeholder="post_office_box">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="street_address" name="street_address" value="<?= $_post['street_address'] ?>" placeholder="street_address">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="extended_address" name="extended_address" value="<?= $_post['extended_address'] ?>" placeholder="extended_address">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="locality" name="locality" value="<?= $_post['locality'] ?>" placeholder="locality">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="region" name="region" value="<?= $_post['region'] ?>" placeholder="region">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="postal_code" name="postal_code" value="<?= $_post['postal_code'] ?>" placeholder="postal_code">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="country_name" name="country_name" value="<?= $_post['country_name'] ?>" placeholder="country_name">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="form-group">
+        <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">contact</legend>
+            <div class="col-sm-10">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-form-label col-sm-2 pt-0">
+            </div>
+            <div class="col-sm-10">
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="role" name="role" value="<?= $_post['role'] ?>" placeholder="role" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="family_name" name="family_name" value="<?= $_post['family_name'] ?>" placeholder="family_name" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="given_name" name="given_name" value="<?= $_post['given_name'] ?>" placeholder="given_name" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="additional_name" name="additional_name" value="<?= $_post['additional_name'] ?>" placeholder="additional_name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="honorific_prefix" name="honorific_prefix" value="<?= $_post['honorific_prefix'] ?>" placeholder="honorific_prefix">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="honorific_suffix" name="honorific_suffix" value="<?= $_post['honorific_suffix'] ?>" placeholder="honorific_suffix">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="tel" class="form-control" id="tel" name="tel" value="<?= $_post['tel'] ?>" placeholder="tel">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <input type="email" class="form-control" id="email" name="email" value="<?= $_post['email'] ?>" placeholder="email">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="form-group row">
+        <div class="col-10">
+        </div>
+        <div class="btn-group btn-group-sm col-sm-2" role="group" aria-label="actions" >
+            <button type="button" class="btn btn-danger">
+                <a href="/customer/list" style="color:inherit">cancel</a>
+            </button>
+            <button type="reset" class="btn btn-primary">reset</button>
+            <button type="submit" class="btn btn-success" name="action" value="ok">ok</button>
+        </button>
+    </div>
+</form>
