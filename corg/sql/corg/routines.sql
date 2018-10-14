@@ -264,6 +264,17 @@ BEGIN
     WHERE nickname = _nickname;
 END;;
 
+CREATE PROCEDURE get_orphans
+()
+BEGIN
+    SELECT id
+    FROM file
+    WHERE id NOT IN (
+        SELECT file_id
+        FROM reference
+    );
+END;;
+
 -- SETTERS
 
 CREATE FUNCTION is_dup_association

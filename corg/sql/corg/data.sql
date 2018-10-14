@@ -132,17 +132,17 @@ INSERT INTO association
 VALUES (1, 2),
 (3, 1);
 
-INSERT INTO file(name, description)
-VALUES ('123.pdf', 'foo bar lich'),
-('foo.txt', 'bla'),
-('lich.html', 'bla'),
-('bar.png', 'bla');
+-- INSERT INTO file(name, description)
+-- VALUES ('123.pdf', 'foo bar lich'),
+-- ('foo.txt', 'bla'),
+-- ('lich.html', 'bla'),
+-- ('bar.png', 'bla');
 
-INSERT INTO reference
-VALUES (1, 1),
-(1, 2),
-(1, 3),
-(2, 4),
-(2, 1);
+-- INSERT INTO reference
+-- VALUES (1, 1),
+-- (1, 2),
+-- (1, 3),
+-- (2, 4),
+-- (2, 1);
 
 SET foreign_key_checks=1;

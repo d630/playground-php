@@ -72,15 +72,29 @@ class Activity extends \corg\Controller
             $this->error_msg[] = 'need an id.';
             $this->listAction(null);
         } else {
-            $modelFile = new \corg\Model\Files();
             try {
                 $this->model->beginTransaction();
                 $this->model->unsetActivity($options['id']);
-                $modelFile->unsetOrphans();
                 $this->model->commit();
             } catch (\Exception $e) {
                 $this->model->rollBack();
                 throw new \Exception($e, 500);
+            }
+            $modelFile = new \corg\Model\Files();
+            $orphans = $modelFile->getOrphans();
+            if (count($orphans)) {
+                try {
+                    $modelFile->unsetOrphans();
+                } catch (\Exception $e) {
+                    $this->model->rollBack();
+                    throw new \Exception($e, 500);
+                }
+                $configFile = \corg\Config::get('file');
+                foreach ($orphans as $k) {
+                    if (is_readable($configFile['upload_dir'] . $k)) {
+                        unlink($configFile['upload_dir'] . $k);
+                    }
+                }
             }
             header('Location: /activity/list/' . $this->model->getLastActivityId());
         }

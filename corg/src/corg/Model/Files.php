@@ -120,4 +120,11 @@ class Files extends \corg\Model
         \corg\Db::getInstance()
             ->exec('CALL unset_orphans()');
     }
+
+    public function getOrphans()
+    {
+        return \corg\Db::getInstance()
+            ->query('CALL get_orphans()')
+            ->fetchALL(\PDO::FETCH_COLUMN);
+    }
 }

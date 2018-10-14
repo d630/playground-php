@@ -192,19 +192,23 @@ class Files extends \corg\Controller
                             $_POST['file_id']
                         );
                     }
-                    $this->model->unsetOrphans();
                     $this->model->commit();
                 } catch (\Exception $e) {
                     $this->model->rollBack();
                     throw new \Exception($e, 500);
                 }
-                $fdiff = array_diff(
-                    scandir($this->config['upload_dir']),
-                    $this->model->getAllFilesTiny()
-                );
-                foreach ($fdiff as $k) {
-                    if (!is_dir($k)) {
-                        unlink($this->config['upload_dir'] . $k);
+                $orphans = $this->model->getOrphans();
+                if (count($orphans)) {
+                    try {
+                        $this->model->unsetOrphans();
+                    } catch (\Exception $e) {
+                        $this->model->rollBack();
+                        throw new \Exception($e, 500);
+                    }
+                    foreach ($orphans as $k) {
+                        if (is_readable($config['upload_dir'] . $k)) {
+                            unlink($config['upload_dir'] . $k);
+                        }
                     }
                 }
             }

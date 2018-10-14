@@ -2,6 +2,7 @@
 $error_msg = &$this->error_msg;
 $password = &$this->password;
 $username = &$this->username;
+$disabled = &$this->disabled;
 ?>
 
 <?php foreach($error_msg as $e): ?>
@@ -11,21 +12,47 @@ $username = &$this->username;
     </div>
 <?php endforeach ?>
 
+
+<?php if ($disabled): ?>
 <div class="row">
     <form action="/auth/login" class="form-signin p-4 col-sm-3" method="POST">
         <h3 >Login</h3>
 
         <div class="form-group">
             <label for="username" class="sr-only" >username</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="username" value="<?=htmlspecialchars($username) ?? null?>"  autofocus>
+            <input type="text" class="form-control" id="username" name="username" placeholder="username" value="<?= htmlspecialchars($username) ?? null?>" disabled autofocus>
         </div>
 
         <div class="form-group">
             <label for="password" class="sr-only">password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="password" value="<?=htmlspecialchars($password) ?? null?>">
+            <input type="password" class="form-control" id="password" name="password" placeholder="password" value="<?= htmlspecialchars($password) ?? null?>" disabled>
+        </div>
+
+        <button type="submit" class="btn btn-primary" name="action" value="sign-in" disabled>sign in</button>
+        <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="First register, then come back and log in" name="action" value="register" disabled>register</button>
+        <button type="button" class="btn btn-primary">
+            <a href="/auth/logout" style="color:inherit">logout</a>
+        </button>
+    </form>
+<div>
+
+<?php else: ?>
+<div class="row">
+    <form action="/auth/login" class="form-signin p-4 col-sm-3" method="POST">
+        <h3 >Login</h3>
+
+        <div class="form-group">
+            <label for="username" class="sr-only" >username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="username" value="<?= htmlspecialchars($username) ?? null?>" autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="sr-only">password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="password" value="<?= htmlspecialchars($password) ?? null?>">
         </div>
 
         <button type="submit" class="btn btn-primary" name="action" value="sign-in">sign in</button>
         <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="First register, then come back and log in" name="action" value="register">register</button>
     </form>
 <div>
+<?php endif ?>

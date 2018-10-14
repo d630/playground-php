@@ -38,6 +38,11 @@ class Auth extends \corg\Controller
         //     $this->error_msg[] = 'SSL/TLS required.';
         //     goto render;
         // }
+        if (isset($_SESSION['employee_id'])) {
+            $this->error_msg[] = 'logout first. then try again';
+            $disabled = true;
+            goto render;
+        }
 
         if (!empty($_POST)) {
             if ($_POST['action'] == 'sign-in') {
@@ -55,7 +60,6 @@ class Auth extends \corg\Controller
                     goto render;
                 }
             } elseif ($_POST['action'] == 'register') {
-                // header('Location: /auth/register');
                 $this->registerAction($options);
                 exit;
             }
@@ -68,7 +72,8 @@ class Auth extends \corg\Controller
             [
                 'error_msg' => $this->error_msg,
                 'employee' => $employee['nickname'] ?? null,
-                'password' => $employee['password'] ?? null
+                'password' => $employee['password'] ?? null,
+                'disabled' => $disabled ?? false
             ]
         );
     }
