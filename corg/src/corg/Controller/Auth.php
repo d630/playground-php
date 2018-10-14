@@ -67,8 +67,8 @@ class Auth extends \corg\Controller
         $this->render('index/auth/login.phtml',
             [
                 'error_msg' => $this->error_msg,
-                'employee' => $employee['nickname'],
-                'password' => $employee['password']
+                'employee' => $employee['nickname'] ?? null,
+                'password' => $employee['password'] ?? null
             ]
         );
     }

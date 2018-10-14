@@ -20,7 +20,8 @@ if(isset($_SESSION['employee_id'])) {
         $route = $_SERVER['PATH_INFO'];
     }
 } else {
-    if ($_SERVER['PATH_INFO'] == '/auth/register') {
+    if (isset($_SESSION['employee_id']) &&
+        $_SERVER['PATH_INFO'] == '/auth/register') {
         $route = '/auth/register';
     } else {
         $route = '/auth/login';

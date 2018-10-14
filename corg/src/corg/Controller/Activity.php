@@ -72,9 +72,11 @@ class Activity extends \corg\Controller
             $this->error_msg[] = 'need an id.';
             $this->listAction(null);
         } else {
+            $modelFile = new \corg\Model\Files();
             try {
                 $this->model->beginTransaction();
                 $this->model->unsetActivity($options['id']);
+                $modelFile->unsetOrphans();
                 $this->model->commit();
             } catch (\Exception $e) {
                 $this->model->rollBack();
