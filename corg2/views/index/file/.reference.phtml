@@ -1,0 +1,56 @@
+<?php
+$error_msg = &$this->error_msg;
+$activities = &$this->activities;
+$file_id = &$this->file_id;
+$file_name = &$this->file_name;
+?>
+
+<?php foreach($error_msg as $e): ?>
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <?= htmlspecialchars($e) ?>
+    </div>
+<?php endforeach ?>
+
+<h3>Add Reference</h3>
+
+<form action="<?= '/files/reference/' . htmlspecialchars($file_id) ?>" method="POST">
+    <div class="form-group row">
+        <label for="file_id" class="col-sm-2 col-form-label">file</label>
+        <div class="col-sm-10">
+            <select class="form-control custom-select" id="file_id" name="file_id" readonly required>
+                <option value=<?= htmlspecialchars($file_id) ?>>
+                        <?= htmlspecialchars($file_name) ?>
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="activity_id" class="col-sm-2 col-form-label">activity</label>
+        <div class="col-sm-10">
+            <select class="form-control custom-select" id="activity_id" name="activity_id" autofocus required>
+                <option value="" selected disabled hidden>Choose here</option>
+                <?php foreach($activities as $k => $v): ?>
+                    <option value=<?= htmlspecialchars($v) ?>>
+                        <?= htmlspecialchars($v) ?>
+                    </option>
+                <?php endforeach ?>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <div class="col-10">
+        </div>
+        <div class="btn-group btn-group-sm col-sm-2" role="group" aria-label="actions" >
+            <button type="button" class="btn btn-danger">
+                <a href="/files/list/<?= htmlspecialchars($file_id) ?>" style="color:inherit">cancel</a>
+            </button>
+            <button type="reset" class="btn btn-primary">reset</button>
+            <button type="submit" class="btn btn-success" name="action" value="ok">ok</button>
+        </button>
+    </div>
+</form>
+

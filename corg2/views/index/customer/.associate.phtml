@@ -1,0 +1,55 @@
+<?php
+$error_msg = &$this->error_msg;
+$customers = &$this->customers;
+$customer_id_1 = &$this->customer_id_1;
+$customer_org_1 = &$this->customer_org_1;
+?>
+
+<?php foreach($error_msg as $e): ?>
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <?= htmlspecialchars($e) ?>
+    </div>
+<?php endforeach ?>
+
+<h3>Add Association</h3>
+
+<form action="<?= '/customer/associate/' . htmlspecialchars($customer_id_1) ?>" method="POST">
+    <div class="form-group row">
+        <label for="customer_id_1" class="col-sm-2 col-form-label">customer1</label>
+        <div class="col-sm-10">
+            <select class="form-control custom-select" id="customer_id_1" name="customer_id_1" readonly required>
+                <option value=<?= htmlspecialchars($customer_id_1) ?>>
+                        <?= htmlspecialchars($customer_org_1) ?>
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="customer_id_2" class="col-sm-2 col-form-label">customer2</label>
+        <div class="col-sm-10">
+            <select class="form-control custom-select" id="customer_id_2" name="customer_id_2" autofocus required>
+                <option value="" selected disabled hidden>Choose here</option>
+                <?php foreach($customers as $k => $v): ?>
+                    <option value=<?= htmlspecialchars($k) ?>>
+                        <?= htmlspecialchars($v) ?>
+                    </option>
+                <?php endforeach ?>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <div class="col-10">
+        </div>
+        <div class="btn-group btn-group-sm col-sm-2" role="group" aria-label="actions" >
+            <button type="button" class="btn btn-danger">
+                <a href="/customer/list/<?= htmlspecialchars($customer_id_1) ?>" style="color:inherit">cancel</a>
+            </button>
+            <button type="reset" class="btn btn-primary">reset</button>
+            <button type="submit" class="btn btn-success" name="action" value="ok">ok</button>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,31 @@
+<div class="col-sm-4">
+    <form action="/auth/register" class="form-signin p-4 col-sm-3" method="POST">
+        <div class="form-group row">
+            <label for="username" class="sr-only" >username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="username" required autofocus>
+        </div>
+
+        <div class="form-group row">
+            <label for="password" class="sr-only">password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="password" required>
+        </div>
+
+        <div class="form-group row">
+            <label for="password2" class="sr-only">password</label>
+            <input type="password" class="form-control" id="password2" name="password2" placeholder="retype password" required>
+        </div>
+
+        <div class="form-group row">
+            <div class="btn-group btn-group-sm" role="group" aria-label="actions" >
+                <button type="button" class="btn btn-danger" id="btnCancel">cancel</button>
+                <button type="reset" class="btn btn-primary" id="btnReset">reset</button>
+                <button type="submit" class="btn btn-primary" id="btnSubmit" disabled>ok</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="col-sm-3">
+</div>
+<div class="col-sm-3">
+</div>

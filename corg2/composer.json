@@ -1,0 +1,18 @@
+{
+  "autoload": {
+    "psr-4": {
+      "D630\\Corg\\": "src"
+    }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/d630/json-decoder"
+    }
+
+  ],
+  "require": {
+    "jeroendesloovere/vcard": "^1.7",
+    "karriere/json-decoder": "dev-master"
+  }
+}

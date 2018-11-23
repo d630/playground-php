@@ -1,0 +1,45 @@
+body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+
+.table-row{
+  cursor:pointer;
+}
+
+.custom-file-input ~ .custom-file-label::after {
+    content: "browse";
+}
+
+#editOrg input::-webkit-input-placeholder {
+  color: var(--warning) !important;
+}
+
+#editOrg input:-moz-placeholder {
+  color: var(--warning) !important;
+}
+
+#editOrg input::-moz-placeholder {
+  color: var(--warning) !important;
+}
+
+#editOrg input:-ms-input-placeholder {
+  color: var(--warning) !important;
+}
+
+#editOrg input::-ms-input-placeholder {
+  color: var(--warning) !important;
+}
+
+#editOrg input::placeholder {
+  color: var(--warning) !important;
+}
+
+
+#editOrg input:required::placeholder {
+  color: var(--danger) !important;
+}
+
+#addOrg input:required::placeholder {
+  color: var(--danger) !important;
+}

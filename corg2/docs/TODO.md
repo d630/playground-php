@@ -1,0 +1,12 @@
+- it is allowed to have more than one employee logged in. that is, a locking mechanism is needed
+
+- Unit tests
+- runtime tests in a real, non-development server (apache2 etc)
+- OAuth
+- database optimization
+- files should not beeing stored on the webserver. Use a separate file server
+- more REST: eg better error responses
+- more input filtering
+- refactor oo design
+- another configuration system
+- single site application is possible here, and prefered

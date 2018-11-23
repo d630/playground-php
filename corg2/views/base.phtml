@@ -1,0 +1,83 @@
+<?php
+use D630\Corg\Config;
+
+$main_title = $this->getTitle();
+$title = $this->title ?? $this->getTitle();
+
+$this->includeStatusCode(@$this->statusCode);
+header('Expires: ' . Config::UNIX_TIME);
+header('Content-Type: text/html; charset=UTF-8');
+?>
+
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title><?= htmlspecialchars($title) ?></title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/css/custom.css">
+        <script defer src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <?php foreach(parent::getJsFile() as $f): ?>
+            <script defer type="text/javascript" src="<?= $f ?>"></script>
+        <?php endforeach ?>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand bg-dark navbar-dark fixed-top">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/"><?= htmlspecialchars($main_title) ?></a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                        <li><a class="nav-link" id="navbar" href="/customers">Customers</a></li>
+                        <li><a class="nav-link" id="navbar" href="/activities">Activities</a></li>
+                        <li><a class="nav-link" id="navbar" href="/files">Files</a></li>
+                    </ul>
+
+                    <ul class="navbar-nav navbar-right">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <form>
+                                    <input type="hidden" id="sessionEmployeeId" style="display:none" name="employee_id" value="<?= $_SESSION['employee_id'] ?? 0?>">
+                                </form>
+                                <?= $_SESSION['employee_nickname'] ?? 'Employee' ?>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <?php if (empty($_SESSION['employee_nickname'])): ?>
+                                    <button class="dropdown-item" type="button" id="navbarBtnLogin">Login</a>
+                                <?php else: ?>
+                                    <button class="dropdown-item" type="button" id="navbarBtnLogout">Logout</a>
+                                <?php endif ?>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main role="main" class="container-fluid">
+            <div class="row" id="mainRow">
+                <div class="col-sm-2" id="mainLeftCol">
+                    <div class="row">
+                    <?php
+                        if (!empty($this->mainLeftCol)) {
+                            $this->content($this->mainLeftCol);
+                        }
+                    ?>
+                    </div>
+                </div>
+                <div class="col" id="mainRightCol">
+                    <div class="row">
+                    <?php
+                        if (!empty($this->mainRightCol)) {
+                            $this->content($this->mainRightCol);
+                        }
+                    ?>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html
