@@ -9,6 +9,9 @@ use D630\Corg\Request\RequestInterface;
 class Auth implements \JsonSerializable, EntityInterface
 {
     private $id;
+    private $last_activity_id;
+    private $last_customer_id;
+    private $last_file_id;
     private $nickname;
     private $password;
     private $password2;
@@ -21,6 +24,21 @@ class Auth implements \JsonSerializable, EntityInterface
     public function getId(): int
     {
         return (int) $this->id;
+    }
+
+    public function getLastActivityId(): int
+    {
+        return (int) $this->last_activity_id;
+    }
+
+    public function getLastCustomerId(): int
+    {
+        return (int) $this->last_customer_id;
+    }
+
+    public function getLastFileId(): int
+    {
+        return (int) $this->last_file_id;
     }
 
     public function getNickname(): string
@@ -44,6 +62,9 @@ class Auth implements \JsonSerializable, EntityInterface
             'id' => $this->getId(),
             'nickname' => $this->getNickname(),
             'password' => $this->getPassword(),
+            'last_activity_id' => $this->getLastActivityId(),
+            'last_customer_id' => $this->getLastCustomerId(),
+            'last_file_id' => $this->getLastFileId(),
         ];
     }
 

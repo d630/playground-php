@@ -19,8 +19,8 @@ END;;
 CREATE PROCEDURE set_employee
 (IN _nickname VARCHAR(80), _password VARCHAR(255))
 BEGIN
-    INSERT INTO employee
-    VALUES (null, _nickname, _password);
+    INSERT INTO employee(nickname, password)
+    VALUES (_nickname, _password);
 END;;
 
 DELIMITER ;
