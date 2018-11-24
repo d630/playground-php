@@ -12,7 +12,7 @@ class JsonResponse extends PJsonResponse implements JsonResponseInterface
 
     public function __construct(array $models, array $settings, array $options)
     {
-        // parent::__construct(__NAMESPACE__, $models, $settings, $options);
+        parent::__construct(__NAMESPACE__, $models, $settings, $options);
     }
 
     public function connect(): void
