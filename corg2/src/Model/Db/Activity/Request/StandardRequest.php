@@ -43,6 +43,15 @@ class StandardRequest extends PStandardRequest implements StandardRequestInterfa
         return $pod->fetchALL(\PDO::FETCH_FUNC, [$this, 'mapAll']);
     }
 
+    public function getEmployeesLastActivityId(?int $id): int
+    {
+        $pod = Db::getInstance()
+            ->prepare('CALL get_employees_last_activity_id(:id)');
+        $pod->execute(['id' => $this->nullifyInt($id)]);
+
+        return (int) $pod->fetchColumn();
+    }
+
     public function getLastActivityId(): int
     {
         return (int) Db::getInstance()

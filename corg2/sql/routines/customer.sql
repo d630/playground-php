@@ -38,6 +38,14 @@ BEGIN
         AND customer.employee_id = employee.id;
 END;;
 
+CREATE PROCEDURE get_employees_last_customer_id
+(IN _id INT UNSIGNED)
+BEGIN
+    SELECT last_customer_id
+    FROM employee
+    WHERE id = _id;
+END;;
+
 CREATE PROCEDURE get_last_customer_id
 ()
 BEGIN

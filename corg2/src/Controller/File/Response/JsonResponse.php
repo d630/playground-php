@@ -170,7 +170,7 @@ class JsonResponse extends PJsonResponse implements JsonResponseInterface
 
         // $oldFileId = $this->modelFile->getLastFileId();
         $file->post($this->modelFile);
-        $newFileId = $this->modelFile->getLastFileId();
+        $newFileId = $this->modelFile->getEmployeesLastFileId($_SESSION['employee_id']);
 
         // if (is_numeric($newFileId) && $newFileId !== $oldFileId) {
         $this->modelFileUpload->rename($tmp_name, $newFileId);

@@ -123,7 +123,7 @@ class JsonResponse extends PJsonResponse implements JsonResponseInterface
 
         // $oldCustomerId = $this->modelCustomer->getLastCustomerId();
         $customers[0]->postMultiple($customers, $this->modelCustomer);
-        $newCustomerId = $this->modelCustomer->getLastCustomerId();
+        $newCustomerId = $this->modelCustomer->getEmployeesLastCustomerId($_SESSION['employee_id']);
 
         // if ($newCustomerId === $oldCustomerId) {
         //     $this->respond(500);

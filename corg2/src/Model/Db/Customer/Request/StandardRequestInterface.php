@@ -14,6 +14,8 @@ interface StandardRequestInterface extends PStandardRequestInterface
 
     public function getCustomer(?int $id, ?string $entityType): array;
 
+    public function getEmployeesLastCustomerId(?int $id): int;
+
     public function getLastCustomerId(): int;
 
     public function mapAll(

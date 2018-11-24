@@ -20,6 +20,8 @@ interface StandardRequestInterface extends PStandardRequestInterface
 
     public function getAllFiles(): array;
 
+    public function getEmployeesLastFileId(?int $id): int;
+
     public function getFile(?int $id, ?string $entityType): array;
 
     public function getLastFileId(): int;

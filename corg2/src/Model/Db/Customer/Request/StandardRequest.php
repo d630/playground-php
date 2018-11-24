@@ -34,6 +34,15 @@ class StandardRequest extends PStandardRequest implements StandardRequestInterfa
         return [$pod->fetchObject($entityType)];
     }
 
+    public function getEmployeesLastCustomerId(?int $id): int
+    {
+        $pod = Db::getInstance()
+            ->prepare('CALL get_employees_last_customer_id(:id)');
+        $pod->execute(['id' => $this->nullifyInt($id)]);
+
+        return (int) $pod->fetchColumn();
+    }
+
     public function getLastCustomerId(): int
     {
         return (int) Db::getInstance()

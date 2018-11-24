@@ -30,6 +30,14 @@ BEGIN
     ORDER BY id DESC;
 END;;
 
+CREATE PROCEDURE get_employees_last_file_id
+(IN _id INT UNSIGNED)
+BEGIN
+    SELECT last_file_id
+    FROM employee
+    WHERE id = _id;
+END;;
+
 CREATE PROCEDURE get_file
 (IN _id INT UNSIGNED)
 BEGIN

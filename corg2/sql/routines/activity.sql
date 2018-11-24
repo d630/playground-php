@@ -43,6 +43,14 @@ BEGIN
         AND activity.customer_id = customer.id;
 END;;
 
+CREATE PROCEDURE get_employees_last_activity_id
+(IN _id INT UNSIGNED)
+BEGIN
+    SELECT last_activity_id
+    FROM employee
+    WHERE id = _id;
+END;;
+
 CREATE PROCEDURE get_last_activity_id
 ()
 BEGIN

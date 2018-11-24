@@ -140,11 +140,12 @@ class JsonResponse extends PJsonResponse implements JsonResponseInterface
 
         // $oldActivityId = $this->modelActivity->getLastActivityId();
         $activities[0]->postMultiple($activities, $this->modelActivity);
-        $newActivityId = $this->modelActivity->getLastActivityId();
+        $newActivityId = $this->modelActivity->getEmployeesLastActivityId($_SESSION['employee_id']);
 
         // if ($newActivityId === $oldActivityId) {
         //     $this->respond(500);
         // } else {
+
         $this->respond(201, Activity::get($newActivityId, $this->modelActivity));
         // }
     }

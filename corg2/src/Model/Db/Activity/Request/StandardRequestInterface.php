@@ -16,6 +16,8 @@ interface StandardRequestInterface extends PStandardRequestInterface
 
     public function getAllFilesActivities(?int $id): array;
 
+    public function getEmployeesLastActivityId(?int $id): int;
+
     public function getLastActivityId(): int;
 
     public function mapAll($id, $mtime, $name, $description, $customer_id, $employee_id): array;
