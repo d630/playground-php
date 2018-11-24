@@ -198,7 +198,7 @@ class Customer implements \JsonSerializable, EntityInterface
                     $v->getTel(),
                     $v->getEmail(),
                     $v->getUrl(),
-                    $_SESSION['employee_nickname'] ?? $v->getEmployeeId()
+                    $_SESSION['employee_id'] ?? $v->getEmployeeId()
                 );
             }
             $model->commit();

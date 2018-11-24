@@ -83,7 +83,7 @@ class File implements \JsonSerializable, EntityInterface
                 $this->getMtype(),
                 $this->getName(),
                 $this->getDescription(),
-                $_SESSION['employee_nickname'] ?? $this->getEmployeeId()
+                $_SESSION['employee_id'] ?? $this->getEmployeeId()
             );
             $model->commit();
         } catch (\Exception $e) {
@@ -102,7 +102,7 @@ class File implements \JsonSerializable, EntityInterface
                     $v->getMtype(),
                     $v->getName(),
                     $v->getDescription(),
-                    $_SESSION['employee_nickname'] ?? $v->getEmployeeId()
+                    $_SESSION['employee_id'] ?? $v->getEmployeeId()
                 );
                 break;
             }

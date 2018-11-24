@@ -71,7 +71,7 @@ class Activity implements \JsonSerializable, EntityInterface
                     $v->getName(),
                     $v->getDescription(),
                     $v->getCustomerId(),
-                    $_SESSION['employee_nickname'] ?? $v->getEmployeeId()
+                    $_SESSION['employee_id'] ?? $v->getEmployeeId()
                 );
             }
             $model->commit();
