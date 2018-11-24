@@ -25,6 +25,10 @@ BEGIN
     UPDATE logi
     SET id = NEW.id
     WHERE ttable = 'customer';
+
+    UPDATE employee
+    SET last_customer_id = NEW.id
+    WHERE id = NEW.employee_id;
 END;;
 
 CREATE TRIGGER after_update_customer

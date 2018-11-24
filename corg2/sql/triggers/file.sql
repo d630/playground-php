@@ -25,6 +25,10 @@ BEGIN
     UPDATE logi
     SET id = NEW.id
     WHERE ttable = 'file';
+
+    UPDATE employee
+    SET last_file_id = NEW.id
+    WHERE id = NEW.employee_id;
 END;;
 
 CREATE TRIGGER after_update_file
