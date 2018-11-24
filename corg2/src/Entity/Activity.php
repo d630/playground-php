@@ -15,7 +15,7 @@ class Activity implements \JsonSerializable, EntityInterface
     private $mtime;
     private $name;
 
-    public static function get(int $id, RequestInterface $model)
+    public static function get(int $id, RequestInterface $model): array
     {
         return $model->getActivity($id, __CLASS__);
     }
@@ -40,9 +40,9 @@ class Activity implements \JsonSerializable, EntityInterface
         return (int) $this->id;
     }
 
-    public function getMtime(): string
+    public function getMtime(): int
     {
-        return (string) $this->mtime;
+        return (int) $this->mtime;
     }
 
     public function getName(): string
@@ -71,7 +71,7 @@ class Activity implements \JsonSerializable, EntityInterface
                     $v->getName(),
                     $v->getDescription(),
                     $v->getCustomerId(),
-                    $v->getEmployeeId()
+                    $_SESSION['employee_nickname'] ?? $v->getEmployeeId()
                 );
             }
             $model->commit();

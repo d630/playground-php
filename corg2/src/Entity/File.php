@@ -17,7 +17,7 @@ class File implements \JsonSerializable, EntityInterface
     private $size;
     private $tmp_name;
 
-    public static function get(int $id, RequestInterface $model)
+    public static function get(int $id, RequestInterface $model): array
     {
         return $model->getFile($id, __CLASS__);
     }
@@ -37,9 +37,9 @@ class File implements \JsonSerializable, EntityInterface
         return (int) $this->id;
     }
 
-    public function getMtime(): string
+    public function getMtime(): int
     {
-        return (string) $this->mtime;
+        return (int) $this->mtime;
     }
 
     public function getMtype(): string
@@ -83,7 +83,7 @@ class File implements \JsonSerializable, EntityInterface
                 $this->getMtype(),
                 $this->getName(),
                 $this->getDescription(),
-                $this->getEmployeeId()
+                $_SESSION['employee_nickname'] ?? $this->getEmployeeId()
             );
             $model->commit();
         } catch (\Exception $e) {
@@ -102,7 +102,7 @@ class File implements \JsonSerializable, EntityInterface
                     $v->getMtype(),
                     $v->getName(),
                     $v->getDescription(),
-                    $v->getEmployeeId()
+                    $_SESSION['employee_nickname'] ?? $v->getEmployeeId()
                 );
                 break;
             }

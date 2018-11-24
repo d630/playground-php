@@ -12,7 +12,7 @@ GET|/files(/{file_id})|
 
 ## JSON
 
-The default and hidden query string in GET requests is `for=standard`. There is also the value `fetch` for some GET methods (which must be stated explicitly).
+The default and hidden query string in GET requests is `for=standard`. There are also the values `fetch` and `dashboard` for some GET methods (which must be stated explicitly).
 
 In order to get/download an uploaded file, use the query string `alt=media`.
 

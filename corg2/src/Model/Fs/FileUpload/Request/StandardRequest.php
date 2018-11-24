@@ -41,8 +41,8 @@ class StandardRequest extends PStandardRequest implements StandardRequestInterfa
         if ($tmpNameInfo->getPathname() === '' ||
             is_numeric($tmpNameInfo->getFilename()) ||
             $tmpNameInfo->isDir() ||
-            !$tmpFillNameInfo->isFile() ||
-            !$tmpFillNameInfo->isWritable()
+            !$tmpFullNameInfo->isFile() ||
+            !$tmpFullNameInfo->isWritable()
         ) {
             throw new \Exception(
                 'could not handle tmp_file: ' . $tmpFullNameInfo->__toString(),
@@ -50,7 +50,7 @@ class StandardRequest extends PStandardRequest implements StandardRequestInterfa
             );
         }
 
-        return $tmpFillNameInfo->getPathname();
+        return $tmpFullNameInfo->getPathname();
     }
 
     public function commit(): void

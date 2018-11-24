@@ -63,7 +63,7 @@ class StandardRequest extends PStandardRequest implements StandardRequestInterfa
             'post_office_box' => (string) $post_office_box,
             'postal_code' => (string) $postal_code,
             'region' => (string) $region,
-            'rev' => $rev,
+            'rev' => (int) $rev,
             'role' => $role,
             'street_address' => (string) $street_address,
             'tel' => (string) $tel,

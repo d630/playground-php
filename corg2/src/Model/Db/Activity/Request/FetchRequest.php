@@ -43,7 +43,7 @@ class FetchRequest extends StandardRequest implements FetchRequestInterface
         return [
             'description' => (string) $description,
             'id' => (int) $id,
-            'mtime' => $mtime,
+            'mtime' => (int) $mtime,
             'name' => $name,
         ];
     }

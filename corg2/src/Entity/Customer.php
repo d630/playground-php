@@ -35,7 +35,7 @@ class Customer implements \JsonSerializable, EntityInterface
         return $this->__keys;
     }
 
-    public static function get(int $id, RequestInterface $model)
+    public static function get(int $id, RequestInterface $model): array
     {
         return $model->getCustomer($id, __CLASS__);
     }
@@ -124,9 +124,9 @@ class Customer implements \JsonSerializable, EntityInterface
         return (string) $this->region;
     }
 
-    public function getRev(): string
+    public function getRev(): int
     {
-        return (string) $this->rev;
+        return (int) $this->rev;
     }
 
     public function getRole(): string
@@ -198,7 +198,7 @@ class Customer implements \JsonSerializable, EntityInterface
                     $v->getTel(),
                     $v->getEmail(),
                     $v->getUrl(),
-                    $v->getEmployeeId()
+                    $_SESSION['employee_nickname'] ?? $v->getEmployeeId()
                 );
             }
             $model->commit();
@@ -314,7 +314,7 @@ class Customer implements \JsonSerializable, EntityInterface
         $this->region = $region;
     }
 
-    public function setRev(?string $rev = null): void
+    public function setRev(?int $rev = null): void
     {
         $this->rev = $rev;
     }

@@ -15,7 +15,7 @@ class DashboardRequest extends StandardRequest implements DashboardRequestInterf
             ->fetchALL(\PDO::FETCH_FUNC, static function ($id, $rev, $org): array {
                 return [
                     'id' => (int) $id,
-                    'rev' => $rev,
+                    'rev' => (int) $rev,
                     'org' => $org,
                 ];
             });

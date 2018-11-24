@@ -57,7 +57,7 @@ class StandardRequest extends PStandardRequest implements StandardRequestInterfa
             'description' => (string) $description,
             'employee_id' => (int) $employee_id,
             'id' => (int) $id,
-            'mtime' => $mtime,
+            'mtime' => (int) $mtime,
             'name' => $name,
         ];
     }

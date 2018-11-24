@@ -2,10 +2,9 @@
 -- INSERTS.
 --
 
-SET foreign_key_checks=0;
+DELIMITER ;
 
-INSERT INTO logi(ttable)
-VALUES ('customer'), ('activity'), ('file');
+SET foreign_key_checks=0;
 
 INSERT INTO employee(nickname, password)
 VALUES ('employee1', '$2y$10$l/qL9r8kkJ1etztpYz1SNuHxg/j0aDSOnj/ZVBd5pbP0wRSaBf.RW'),

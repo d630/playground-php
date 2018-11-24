@@ -13,7 +13,7 @@ class Auth implements \JsonSerializable, EntityInterface
     private $password;
     private $password2;
 
-    public static function get(string $nickname, RequestInterface $model)
+    public static function get(string $nickname, RequestInterface $model): array
     {
         return $model->getEmployee($nickname, __CLASS__);
     }

@@ -1,6 +1,6 @@
-SET NAMES 'utf8mb4';
-
 DELIMITER ;
+
+SET NAMES 'utf8mb4';
 
 DROP DATABASE IF EXISTS corg;
 CREATE DATABASE corg;
@@ -10,3 +10,5 @@ SOURCE tables.sql;
 SOURCE triggers.sql;
 SOURCE routines.sql;
 SOURCE data.sql;
+
+DELIMITER ;
