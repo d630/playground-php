@@ -7,7 +7,7 @@
 curl -v -s -L -b /tmp/corg-cookie.txt -c /tmp/corg-cookie.txt \
     -X PUT 'http://localhost:8080/auth' \
     -H 'Accept: application/json' \
-    -H 'Content-Type: application/json'
+    -H 'Content-Type: application/json' \
     --data '{
         "nickname": "foo",
         "password": 1234,
@@ -21,7 +21,7 @@ curl -v -s -L -b /tmp/corg-cookie.txt -c /tmp/corg-cookie.txt \
 curl -v -s -L -b /tmp/corg-cookie.txt -c /tmp/corg-cookie.txt \
     -X POST 'http://localhost:8080/auth' \
     -H 'Accept: application/json' \
-    -H 'Content-Type: application/json'
+    -H 'Content-Type: application/json' \
     --data '{
         "nickname": "foo",
         "password": 1234
@@ -65,10 +65,10 @@ You will get a JSON response like:
 Then take `tmp_name`, rename the file, if you want, and make a second POST request:
 
 ```sh
-curl -v -s -L -b /tmp/corg-cookie.txt -c /tmp/corg-cookie.txt
-    -X POST 'http://localhost:8080/files'
-    -H 'Accept: application/json'
-    -H 'Content-Type: application/json'
+curl -v -s -L -b /tmp/corg-cookie.txt -c /tmp/corg-cookie.txt \
+    -X POST 'http://localhost:8080/files' \
+    -H 'Accept: application/json' \
+    -H 'Content-Type: application/json' \
     --data '{
         "tmp_name": ".CorglMc2ef",
         "size": 17,
